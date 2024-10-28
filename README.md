@@ -3,7 +3,7 @@
 This is a short and improved version of the library:
 https://github.com/danielgatis/rembg
 
-which in turn works on top of the library:
+which in turn works on the AI ​​model:
 https://github.com/xuebinqin/U-2-Net
 
 ## Installation
