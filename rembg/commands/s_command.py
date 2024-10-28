@@ -1,7 +1,7 @@
 import json
 import os
 import webbrowser
-from rembg.config import HOST, PORT
+from rembg.config import IP, PROTOCOL, HOST, PORT
 from typing import Optional, Tuple, cast
 
 import aiohttp
@@ -35,7 +35,7 @@ from ..sessions.base import BaseSession
 @click.option(
     "-h",
     "--host",
-    default=HOST,
+    default=IP,
     type=str,
     show_default=True,
     help="host",
@@ -219,7 +219,7 @@ def s_command(port: int, host: str, log_level: str, threads: int) -> None:
     @app.on_event("startup")
     def startup():
         try:
-            webbrowser.open(f"{HOST}:{PORT}")
+            webbrowser.open(f"{PROTOCOL}://{HOST}:{PORT}")
         except Exception:
             pass
 

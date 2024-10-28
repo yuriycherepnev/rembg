@@ -13,7 +13,12 @@ git clone ...
 
 cd rembg-disk
 
-docker-compose up
+set the ip, protocol, host and port settings in the renbg/config.py
 
+docker-compose up --build
+```
+## Test
+
+```bash
 curl -s -F file=@/path/to/input.jpg "http://localhost:7000/api/remove"  -o output.png
 ```
