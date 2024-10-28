@@ -1,6 +1,7 @@
 import json
 import os
 import webbrowser
+from rembg.config import HOST, PORT
 from typing import Optional, Tuple, cast
 
 import aiohttp
@@ -26,7 +27,7 @@ from ..sessions.base import BaseSession
 @click.option(
     "-p",
     "--port",
-    default=7000,
+    default=PORT,
     type=int,
     show_default=True,
     help="port",
@@ -34,7 +35,7 @@ from ..sessions.base import BaseSession
 @click.option(
     "-h",
     "--host",
-    default="0.0.0.0",
+    default=HOST,
     type=str,
     show_default=True,
     help="host",
@@ -218,7 +219,7 @@ def s_command(port: int, host: str, log_level: str, threads: int) -> None:
     @app.on_event("startup")
     def startup():
         try:
-            webbrowser.open(f"http://localhost:{port}")
+            webbrowser.open(f"{HOST}:{PORT}")
         except Exception:
             pass
 
@@ -312,10 +313,10 @@ def s_command(port: int, host: str, log_level: str, threads: int) -> None:
         return app
 
     print(
-        f"To access the API documentation, go to http://{'localhost' if host == '0.0.0.0' else host}:{port}/api"
+        f"To access the API documentation, go to {'localhost' if host == '0.0.0.0' else host}:{port}/api"
     )
     print(
-        f"To access the UI, go to http://{'localhost' if host == '0.0.0.0' else host}:{port}"
+        f"To access the UI, go to {'localhost' if host == '0.0.0.0' else host}:{port}"
     )
 
     uvicorn.run(gr_app(app), host=host, port=port, log_level=log_level)
